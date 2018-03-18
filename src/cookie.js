@@ -7,12 +7,12 @@
 
 ;(function defineCookie(global, factory) {
     //初始化Vu
-    var Cookie = factory(global);
+    var cookie = factory(global);
     if (typeof exports === 'object' && exports && typeof exports.nodeName !== 'string') {
-        global.Cookie = Cookie;
-        module.exports = Cookie; // CommonJS
+        global.cookie = cookie;
+        module.exports = cookie; // CommonJS
     } else {
-        global.Cookie = Cookie;
+        global.cookie = cookie;
     }
 })(window, function (global, undefined) {
     'use strict';

@@ -1,4 +1,4 @@
-# cookiec操作组件
+# cookie操作组件
 
 该组件用于`JavaScript`进行cookie存取操作。如下API介绍:
 
@@ -12,41 +12,33 @@
 
 ## API
 
-- **parseJSON(jsonstr)**
-    用于`string`转`json对象`
+- **设置cookie**
+
+    * 用于设置当前域下的cookie
+    * HttpOnly属性如果在cookie中设置了HttpOnly属性，那么通过js脚本将无法读取到cookie信息，这样能有效的防止XSS攻击。
+    * 设置cookie(只能设置domain为p当前域，path为当前域下的路径)
+    * path（指定了 cookie 将要被发送至哪个或哪些域中的那个路径）
+    * domain（指定了 cookie 将要被发送至哪个或哪些域中）
+    * secure（标识只有当一个请求通过 SSL 或 HTTPS 创建时，包含 secure 选项的 cookie 才能被发送至服务器）
+    * expires（超时时间）
     
-	```javascript
-    var jsonstr = '{"items":{"-name":"456","item":[{"-name":"123","#text":"123"},{"-name":"456","#text":"678"}]}}';
-    //JSON字符串转JSON对象
-    var jsonobj = window.processData.parseJSON(jsonstr);
-    console.log("JSON字符串转JSON对象: "+jsonstr+" --转为--> "+jsonobj);
+	```javascript.
+    cookie('name',
+        'jianghe',
+        {
+            path: '/cookie',
+            domain: 'localhost',
+            expires: 7
+        }
+    );
     ```
-- **json2str(json)**
-	用于`json对象`转`string`
+- **读取cookie**
+	用于读取当前域下的cookie
 	
     ```javascript
-    var jsonstr = '{"items":{"-name":"456","item":[{"-name":"123","#text":"123"},{"-name":"456","#text":"678"}]}}';
-    var jsonobj = window.processData.parseJSON(jsonstr);
-    //JSON对象转JSON字符串
-    var jsonstr1 = window.processData.json2str(jsonobj);
-    console.log("JSON对象转JSON字符串: "+jsonobj+" --转为--> "+jsonstr1);
-    ```
-- **parseXML(xmlstr)**
-	用于`string`转`xml对象`
-	
-    ```javascript
-    var xmlstr = "<items name='456'><item name='123'>123</item><item name='456'>678</item></items>";
-    //XML字符串转XML对象
-    var xmlobj = window.processData.parseXML(xmlstr);
-    console.log("XML字符串转XML对象: "+xmlstr+" --转为--> "+xmlobj);
-    ```
-- **xml2str(xml)**
-	用于`xml对象`转`string`
-	
-    ```javascript
-    var xmlstr = "<items name='456'><item name='123'>123</item><item name='456'>678</item></items>";
-    var xmlobj = window.processData.parseXML(xmlstr);
-    //XML对象转XML字符串
-    var xmlstr1 = window.processData.xml2str(xmlobj);
-    console.log("XML对象转XML字符串: "+xmlobj+" --转为--> "+xmlstr1);
+    /**
+     * 读取当前域下的cookie
+     */
+    var coo = cookie('name');
+    console.log(coo);
     ```
