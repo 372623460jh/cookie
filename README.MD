@@ -15,7 +15,7 @@
 - **设置cookie**
 
     * 用于设置当前域下的cookie   
-    
+   
     * 设置cookie(只能设置domain为当前域，path为当前域下的路径)
     
     * HttpOnly属性如果在cookie中设置了HttpOnly属性，那么通过js脚本将无法读取到cookie信息，这样能有效的防止XSS攻击。
